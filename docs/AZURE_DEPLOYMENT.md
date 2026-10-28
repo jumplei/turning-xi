@@ -12,6 +12,10 @@ flowchart LR
     Bicep[ARM and Bicep] --> Platform[Consumption environment and supporting resources]
 ```
 
+## Hosted application
+
+[Open Turning XI](https://ca-matchmind.jollystone-6e63690c.eastus2.azurecontainerapps.io). The demo uses HTTPS and a token gate for model-generating requests. Supply the token separately in submission testing instructions; do not commit credentials. The hosted model allowance is 800 request slots. Session counters are operational controls and may require carry-forward across revision changes.
+
 ## Service configuration
 
 - One container serves the frontend and API on port 8000.

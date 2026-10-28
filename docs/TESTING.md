@@ -15,7 +15,7 @@ The latest local Python run passed 66 tests. Tests use mocked model transports a
 
 Development has used real Microsoft Foundry inference for explanations, audience and team preferences, personnel events, selected phases and recaps. These are individual samples, not an error-free benchmark.
 
-A full-time failure was reproduced: goal scorers appeared in the supplied goal history but were missing from the event evidence used by player-name validation. The fix includes goal evidence in full-time explanations. A subsequent real full-time sample passed typed-fact and reference checks with source `foundry`, at approximately 2.2 seconds.
+A full-time failure was reproduced: goal scorers and a dismissed player appeared in the supplied match history but were missing from the selected event evidence used by player-name validation. Full-time context now includes goals, dismissals and the final whistle. Hosted verification of the released image passed for a goal explanation (about 4.0 seconds) and full-time explanation (about 2.6 seconds), both with source `foundry`.
 
 Model failures still produce explicit fallbacks. Request timing varies. Tests do not prove qualitative tactical causality or that every generated sentence is correct.
 

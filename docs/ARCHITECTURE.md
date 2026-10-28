@@ -35,7 +35,7 @@ flowchart TD
 
 ## Evidence boundaries
 
-Evidence and statistics are limited to the selected match time. Deep tools cannot change time, revisions or match data. At full time, explanation evidence includes the supplied goals, so the narrative and player-reference checks use consistent evidence.
+Evidence and statistics are limited to the selected match time. Deep tools cannot change time, revisions or match data. At full time, explanation evidence includes goals, dismissals and the final whistle, so the narrative and player-reference checks use consistent evidence.
 
 The validation layer checks structured facts and references. Qualitative prose is not a complete semantic or causal proof. Pressure is an event tag; the UI does not infer it from video or tracking.
 
