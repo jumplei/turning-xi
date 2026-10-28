@@ -8,6 +8,7 @@ param imageTag string = 'pending-build'
 param modelEndpoint string = ''
 param modelDeployment string = 'gpt-6-luna'
 param persistentLogs bool = false
+param protectModelAccess bool = false
 @minValue(1)
 param modelCallLimit int = 800
 param modelCallsUsed int = 0
@@ -47,6 +48,7 @@ module platform './platform.bicep' = if (!registryOnly) {
     modelEndpoint: modelEndpoint
     modelDeployment: modelDeployment
     persistentLogs: persistentLogs
+    protectModelAccess: protectModelAccess
     modelCallLimit: modelCallLimit
     modelCallsUsed: modelCallsUsed
     modelKey: modelKey

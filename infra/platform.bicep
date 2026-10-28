@@ -5,6 +5,7 @@ param imageTag string
 param modelEndpoint string
 param modelDeployment string
 param persistentLogs bool = false
+param protectModelAccess bool = false
 param modelCallLimit int = 800
 param modelCallsUsed int = 0
 @secure()
@@ -67,11 +68,10 @@ resource app 'Microsoft.App/containerApps@2024-03-01' = if (!registryOnly) {
         targetPort: 8000
         transport: 'auto'
       }
-      secrets: [
+      secrets: concat([
         { name: 'model-key', value: modelKey }
-        { name: 'demo-access-token', value: demoAccessToken }
         { name: 'registry-password', value: registryOnly ? '' : registry.listCredentials().passwords[0].value }
-      ]
+      ], protectModelAccess ? [{ name: 'demo-access-token', value: demoAccessToken }] : [])
       registries: [
         {
           server: registry.properties.loginServer
@@ -86,16 +86,15 @@ resource app 'Microsoft.App/containerApps@2024-03-01' = if (!registryOnly) {
           name: 'matchmind'
           image: '${registry.properties.loginServer}/matchmind:${imageTag}'
           resources: { cpu: json('0.5'), memory: '1Gi' }
-          env: [
+          env: concat([
             { name: 'AZURE_OPENAI_ENDPOINT', value: modelEndpoint }
             { name: 'AZURE_OPENAI_DEPLOYMENT', value: modelDeployment }
             { name: 'AZURE_OPENAI_AUTH_MODE', value: 'api_key' }
             { name: 'AZURE_OPENAI_API_KEY', secretRef: 'model-key' }
-            { name: 'MATCHMIND_ACCESS_TOKEN', secretRef: 'demo-access-token' }
             { name: 'PHASELENS_SESSION_CALL_LIMIT', value: string(modelCallLimit) }
             { name: 'PHASELENS_SESSION_CALLS_USED', value: string(modelCallsUsed) }
             { name: 'PHASELENS_SESSION_SECONDS', value: '0' }
-          ]
+          ], protectModelAccess ? [{ name: 'MATCHMIND_ACCESS_TOKEN', secretRef: 'demo-access-token' }] : [])
           probes: [
             {
               type: 'Startup'
