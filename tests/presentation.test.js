@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict');
+const {overlayPayload,correctionCounts}=require('../frontend/presentation.js');
+const insight={artifact_id:'card_one',revision:{id:'r1'},title:'A turn',text:'An observed sequence.',source:'template',evidence:[{id:'evt_1'}],second:30,display_duration_ms:8000};
+const payload=overlayPayload(insight,{id:'match_one',dataset_version:'3.0'});
+assert.equal(payload.artifact_id,'overlay_card_one');
+assert.equal(payload.text,insight.text);
+assert.equal(payload.source,'template');
+assert.equal(payload.evidence,insight.evidence);
+assert.equal(insight.artifact_id,'card_one');
+assert.equal(overlayPayload(null,{}),null);
+assert.deepEqual(correctionCounts({operations:[{operation:'withdraw',kind:'insight'},{operation:'withdraw',kind:'overlay'},{operation:'withdraw',kind:'phase'},{operation:'replace',kind:'score'}],retained_artifacts:[{id:'early'}]}),{insight:1,recap:0,overlay:1,phase:1,retained:1});
+console.log('Shared overlay payload and correction summary checks passed.');
