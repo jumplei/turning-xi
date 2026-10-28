@@ -10,7 +10,7 @@ Turning XI helps fans and analysts understand how a match develops, and lets bro
 
 [Open Turning XI](https://ca-matchmind.jollystone-6e63690c.eastus2.azurecontainerapps.io)
 
-To use hosted AI generation, enter the demo access token supplied with the submission's testing instructions in the **DEMO ACCESS TOKEN** field. Match replay and computed statistics are visible without it. The hosted demo is scheduled to remain available through the judging deadline, November 10, 2026 at 11:59 p.m. Pacific.
+Open the hosted demo directly—no sign-in or access token is required. Press Play to follow the match and its AI explanations. The hosted demo is scheduled to remain available through the judging deadline, November 10, 2026 at 11:59 p.m. Pacific.
 
 ## Try it locally
 
