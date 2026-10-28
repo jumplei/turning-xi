@@ -2,7 +2,7 @@
 
 **Every turning point, explained.**
 
-Turn synthetic football events into evidence-grounded stories, personalized insights, and broadcast-ready recaps—updated when the match record changes.
+Turn football events into evidence-grounded stories, personalized insights, and broadcast-ready recaps—updated when the match record changes.
 
 Turning XI helps fans and analysts understand how a match develops, and lets broadcast operators see which stories and graphics need updating after a record correction. Built for **The Synthetic Match Insights Engine for Premier League Studio**.
 
