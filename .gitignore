@@ -1,0 +1,20 @@
+.venv/
+.env
+.azure/cli/
+.azure/config-local/
+outputs/demo-access.txt
+__pycache__/
+*.pyc
+.DS_Store
+work/*
+!work/.gitkeep
+
+# Local reviews, credentials, approval records and environment tooling
+.azure/
+outputs/
+AGENTS.md
+scripts/
+.env.*
+!.env.example
+*.log
+*.zip

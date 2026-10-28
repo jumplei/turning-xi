@@ -1,0 +1,9 @@
+.venv
+.env
+.git
+.azure
+work
+outputs
+tests
+__pycache__
+.DS_Store
