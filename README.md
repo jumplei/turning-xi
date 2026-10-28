@@ -6,6 +6,12 @@ Turn football events into evidence-grounded stories, personalized insights, and 
 
 Turning XI helps fans and analysts understand how a match develops, and lets broadcast operators see which stories and graphics need updating after a record correction. Built for **The Synthetic Match Insights Engine for Premier League Studio**.
 
+## Live demo
+
+[Open Turning XI](https://ca-matchmind.jollystone-6e63690c.eastus2.azurecontainerapps.io)
+
+To use hosted AI generation, enter the demo access token supplied with the submission's testing instructions in the **DEMO ACCESS TOKEN** field. Match replay and computed statistics are visible without it. The hosted demo is scheduled to remain available through the judging deadline, November 10, 2026 at 11:59 p.m. Pacific.
+
 ## Try it locally
 
 Use Python 3.9 or later. Keep dependencies in a project virtual environment.
@@ -80,7 +86,7 @@ Node.js is needed only for the standalone JavaScript checks; there are no fronte
 | **Azure Container Apps, Consumption** | Hosts FastAPI and the JavaScript frontend together behind HTTPS |
 | **Azure Container Registry (ACR), Basic** | Stores the private Linux application image |
 | **ACR Tasks** | Builds and checks the container image remotely |
-| **Azure Monitor Log Analytics** | Collects Container Apps platform/application logs |
+| **Azure Monitor Log Analytics** | Provisioned operational logging workspace; persistent ingestion is disabled for this demo |
 | **Azure Resource Manager and Bicep** | Defines and validates the hosting infrastructure through staged deployment |
 | **Azure CLI and Microsoft Entra ID** | Authenticates management operations and deployment verification |
 
