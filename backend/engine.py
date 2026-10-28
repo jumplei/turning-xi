@@ -472,12 +472,19 @@ def context(second, focus='neutral', recap=False, revision='original'):
     else:
         evidence = recent[-8:]
     if recap:
-        # A recap must be able to cite earlier goals, not only the latest window.
+        # Match-wide stories need goals and dismissals, not only the latest window.
         goal_events = [e for e in visible if e['outcome'] == 'goal'][-8:]
-        seen = {e['id'] for e in goal_events}
+        slots=8-len(goal_events)
+        dismissals=[e for e in visible if e['type']=='card' and e.get('card_color')=='red']
+        key_events=goal_events+(dismissals[-slots:] if slots else [])
+        if s['match_status']=='full_time':
+            target=next((e for e in reversed(visible) if e['type']=='full_time'),target)
+            kind='full_time'
+            if target and len(key_events)<8:key_events.append(target)
+        seen = {e['id'] for e in key_events}
         additional = [e for e in evidence if e['id'] not in seen]
-        slots = 8 - len(goal_events)
-        evidence = sorted(goal_events + (additional[-slots:] if slots else []), key=lambda e:e['second'])
+        slots = 8 - len(key_events)
+        evidence = sorted(key_events + (additional[-slots:] if slots else []), key=lambda e:e['second'])
     return dict(second=second, revision=s['revision'], match_status=s['match_status'], display_clock=s['display_clock'], period=s['period'], kind=kind, target=target, focus=focus, teams=TEAMS,
                 stats=s['stats'], recent_stats=s['recent_stats'], previous_stats=s['previous_stats'],
                 goals=[dict(event_id=e['id'],second=e['second'], clock=e['clock'], team=e['team'], player=e['player']) for e in visible if e['outcome'] == 'goal'],
@@ -502,7 +509,7 @@ def template(ctx, mode='fan', language='en', recap=False):
     name = TEAMS[focus]['name']
     a, b = ctx['recent_stats'][focus], ctx['previous_stats'][focus]
     score = '%s–%s' % (ctx['stats']['home']['goals'], ctx['stats']['away']['goals'])
-    if recap:
+    if recap or ctx['match_status']=='full_time':
         title = ('全场回顾' if zh else 'Full-time recap') if ctx['match_status'] == 'full_time' else ('比赛阶段回顾' if zh else 'The match so far')
         text = ('截至当前，比分为 %s。%s 完成 %s 次射门；关联事件包含进球及最近片段。' % (score, name, ctx['stats'][focus]['shots'])) if zh else ('The score is %s. %s have taken %s shots so far. The linked evidence includes goals and recent play.' % (score, name, ctx['stats'][focus]['shots']))
         if ctx['goals']:
