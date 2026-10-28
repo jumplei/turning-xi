@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111713"><title>Turning XI — Every turning point, explained.</title>
+  <link rel="stylesheet" href="/static/style.css?v=review-fixes-v20">
+  <script src="/static/presentation.js?v=review-fixes-v20" defer></script>
+  <script src="/static/replay-policy.js?v=review-fixes-v20" defer></script>
+  <script src="/static/navigation.js?v=review-fixes-v20" defer></script>
+  <script src="/static/enhancements.js?v=review-fixes-v20" defer></script>
+  <script src="/static/app.js?v=review-fixes-v20" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/" aria-label="Turning XI home"><span class="brand-icon">t<span>↗</span></span><span class="brand-wordmark">Turning XI</span><span class="brand-dot">.</span></a>
+  <nav aria-label="Primary"><span class="nav-active" data-i18n="matchCentre">Match centre</span><span class="nav-note" data-i18n="tagline">Every turning point, explained.</span></nav>
+  <div class="header-language"><label class="sr-only" for="language" data-i18n="language">LANGUAGE</label><select id="language"><option value="en">English</option><option value="zh">简体中文</option></select></div>
+  <span class="synthetic"><i></i><span data-i18n="synthetic">SYNTHETIC MATCH</span></span>
+</header>
+<main>
+  <section class="intro"><div><div class="eyebrow" data-i18n="eyebrow">MATCH INTELLIGENCE / DEMO 001</div><h1 data-i18n="headline">Every turning point, explained.</h1><p data-i18n="subhead">Follow the moments. Understand the why. Make the match yours.</p></div><div class="engine-status"><span class="status-dot"></span><span id="engine-status" role="status">Checking engine…</span></div></section>
+  <section class="match-hub panel" aria-label="Scoreboard and replay controls">
+    <div class="scoreboard" role="group" aria-label="Match scoreboard">
+      <div class="team home-team"><span class="crest home-crest">N<span>FC</span></span><div><span class="team-name">Northbridge FC</span><small data-i18n="homeTeam">HOME · NBR</small></div></div>
+      <div class="score-centre"><span id="match-phase" class="match-phase">MATCH REPLAY</span><div class="score"><span id="home-score">0</span><span class="score-dash">:</span><span id="away-score">0</span></div><span class="clock" id="clock">00:00</span></div>
+      <div class="team away-team"><div><span class="team-name">Harbour Athletic</span><small data-i18n="awayTeam">AWAY · HBA</small></div><span class="crest away-crest">H<span>AC</span></span></div>
+    </div>
+    <div class="scoreboard-controls">
+      <div class="transport"><button id="play" disabled class="button button-dark" data-i18n="play">Play</button><button id="restart" class="button button-ghost" aria-label="Restart match">↺</button><label class="sr-only" for="speed">Replay speed</label><select id="speed"><option value="10">10×</option><option value="30" selected>30×</option><option value="60">60×</option></select></div>
+      <div class="scoreboard-progress"><label class="sr-only" for="timeline">Match time</label><input id="timeline" type="range" min="0" max="0" value="0" step="1"><span id="playback-time">00:00</span></div>
+      <details id="moment-navigation" class="moment-navigation">
+        <summary aria-label="Key moments"><span class="nav-label-long" data-i18n="keyMoments">Key moments</span><span class="nav-label-short" data-i18n="momentsShort">Moments</span><svg class="dropdown-chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="m1 4 5 5 5-5"/></svg></summary>
+        <div class="moment-menu"><div class="moment-menu-heading"><strong data-i18n="matchNavigation">Match navigation</strong></div><p id="moment-mode-note"></p><label class="pause-insight-switch"><input id="pause-for-insight" type="checkbox"><span data-i18n="pauseForAI">Pause for AI at key moments</span></label><div class="moment-groups"><section><h3 data-i18n="matchMoments">Match moments</h3><div id="match-moments"></div></section><section><h3 data-i18n="rulesChanges">Rules &amp; changes</h3><div id="rule-moments"></div></section></div></div>
+      </details>
+    </div>
+  </section>
+  <section class="panel phases-panel" aria-label="Turning points"><div class="panel-heading"><h2 data-i18n="turningPoints">Turning points</h2><div class="phase-picker-control"><label class="sr-only" for="phase-picker" data-i18n="allPhases">All completed phases</label><select id="phase-picker"><option value="">All completed phases</option></select></div></div><p class="fine-print" data-i18n="phaseIntro">Select a completed phase, inspect its steps, or replay the sequence. Events show order, not proven causation.</p><div id="phase-cards" class="phase-cards"></div><div id="phase-inspector" class="phase-inspector"></div></section>
+  <div class="workspace">
+      <article class="panel field-panel"><div class="panel-heading"><h2 data-i18n="matchView">Match view</h2><span class="tiny-tag" data-i18n="eventMap">EVENT MAP</span></div>
+        <div class="pitch-wrap"><svg id="pitch" viewBox="0 0 700 440" role="img" aria-label="Synthetic football event map">
+          <defs><pattern id="stripes" width="120" height="400" patternUnits="userSpaceOnUse"><rect width="60" height="400" fill="#ffffff" opacity=".025"/></pattern><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#baff5a"/></marker></defs>
+          <rect x="35" y="30" width="630" height="380" fill="#19382b"/><rect x="35" y="30" width="630" height="380" fill="url(#stripes)"/>
+          <g fill="none" stroke="#7c9b87" stroke-width="1.3" opacity=".58"><rect x="35" y="30" width="630" height="380"/><path d="M350 30V410"/><circle cx="350" cy="220" r="57"/><circle cx="350" cy="220" r="2" fill="#7c9b87"/><path d="M35 110H135V330H35 M665 110H565V330H665 M35 169H70V271H35 M665 169H630V271H665"/><path d="M135 179 A57 57 0 0 1 135 261 M565 179 A57 57 0 0 0 565 261"/><rect x="24" y="197" width="11" height="46"/><rect x="665" y="197" width="11" height="46"/></g>
+          <g id="offside-line"></g><g id="event-trail"></g><g id="ball-marker"></g><g id="inspection-marker"></g>
+        </svg><div class="pitch-caption"><span><i class="legend-dot lime"></i><span id="home-direction">NBR ←</span></span><span data-i18n="positions">Event locations · not player tracking</span><span><span id="away-direction">→ HBA</span><i class="legend-dot lavender"></i></span></div></div>
+        <div id="active-event" class="active-event">Ready for kick-off.</div>
+      </article>
+
+      <article class="panel insight-panel"><div class="panel-heading insight-heading"><h2><span class="spark">✳</span> <span data-i18n="insightRead">The Turning XI read</span></h2><span id="viewing-mode-label" class="sr-only" data-i18n="viewingMode">VIEWING MODE</span><div class="segmented insight-mode" role="group" aria-labelledby="viewing-mode-label" aria-describedby="mode-description"><button class="selected" id="fan-mode" aria-pressed="true" data-i18n="fan">Fan</button><button id="analyst-mode" aria-pressed="false" data-i18n="analyst">Analyst</button></div></div>
+        <p id="mode-description" class="sr-only">The story, without the jargon.</p><span id="audience-label" class="sr-only">FOR THE FAN</span>
+        <div class="insight-toolbar"><span id="insight-time">—</span><div class="follow-team insight-perspective"><label class="sr-only" for="focus" data-i18n="followTeam">FOLLOW A TEAM</label><select id="focus"><option value="neutral">Neutral perspective</option><option value="home">Northbridge FC</option><option value="away">Harbour Athletic</option></select></div></div>
+        <div id="token-control" class="preference-group" hidden><label for="access-token">DEMO ACCESS TOKEN</label><input id="access-token" type="password" autocomplete="off" placeholder="Session only"></div>
+        <div id="insight-body" aria-live="polite"><h3 data-i18n="initialTitle">Every moment has a story.</h3><p data-i18n="initialText">Play the match or jump to a key moment to reveal the evidence behind the game.</p></div>
+        <div id="verification-status" class="verification-status"></div>
+        <div id="insight-source" class="source-label">RULE-BASED DEMO · AI NOT CONNECTED</div>
+        <details id="evidence-details"><summary><span data-i18n="evidence">See the evidence</span><span id="evidence-count">0 events</span></summary><div class="evidence-popover"><div id="evidence-list"></div><div id="workflow-trace" class="workflow-trace" hidden></div><p class="fine-print" data-i18n="evidenceNote">Linked events support the explanation; tactical interpretations are not proven causes.</p></div></details>
+        <div class="insight-actions"><button id="refresh-insight" class="button button-dark" data-i18n="refresh">Refresh insight ↗</button><button id="export-overlay" class="button button-ghost" disabled data-i18n="export">Export overlay JSON ↓</button></div>
+      </article>
+      <article class="panel stats-panel"><div class="panel-heading"><h2 data-i18n="matchStats">The numbers</h2><span class="tiny-tag" data-i18n="computed">COMPUTED</span></div><div class="stat-team-labels"><span>NBR</span><span data-i18n="matchTotal">MATCH TOTAL</span><span>HBA</span></div><div id="stats"></div><p class="fine-print" data-i18n="statsNote">Pressure = tagged synthetic pressure events. No tracking or video inference.</p></article>
+      <article class="panel momentum-panel"><div class="panel-heading"><h2 data-i18n="pressurePulse">Pressure pulse</h2><span class="tiny-tag" data-i18n="fiveMinute">5-MIN WINDOWS</span></div><div class="chart-legend"><span><i class="legend-dot lime"></i>NBR</span><span><i class="legend-dot lavender"></i>HBA</span><span class="muted" data-i18n="pressureCount">Pressure events</span></div><div id="pressure-chart" class="pressure-chart"></div><div class="chart-axis"><span>0′</span><span id="axis-half">45+2′</span><span id="axis-end">90+3′</span></div></article>
+      <article class="panel lineups-panel"><div class="panel-heading"><h2 data-i18n="lineups">Players &amp; discipline</h2><span class="tiny-tag" data-i18n="prefixOnly">AT THIS MOMENT</span></div><div id="lineups" class="lineups-grid"></div><p class="fine-print" data-i18n="rulesNote">5 substitutions · 3 in-play windows · half-time changes use no window. Dismissed players cannot be replaced.</p></article>
+      <article class="panel feed-panel"><div class="panel-heading"><h2 data-i18n="eventFeed">On the pitch</h2><span id="event-count" class="tiny-tag">0 EVENTS</span></div><div id="event-feed" class="event-feed"></div></article>
+
+      <article class="recap-panel"><span class="eyebrow" data-i18n="bigPicture">THE BIG PICTURE</span><h2 data-i18n="recapTitle">The story so far.</h2><p data-i18n="recapDesc">Turn the match into a concise recap, shaped by your perspective.</p><button id="generate-recap" class="button button-lime" data-i18n="recapButton">Generate recap ↗</button><div id="recap-result" aria-live="polite"></div></article>
+
+  <details id="production-desk" class="panel production-desk">
+    <summary><span data-i18n="productionDesk">Broadcast desk</span><span class="tiny-tag" data-i18n="productionPurpose">VERIFICATION · CORRECTIONS · BROADCAST OUTPUT</span></summary>
+    <div class="production-content">
+      <article class="panel trust-panel"><div class="panel-heading"><h2 data-i18n="trustDesk">Trust desk</h2><span id="revision-label" class="tiny-tag">r1 · Original</span></div><div class="trust-grid"><section><h3 data-i18n="correctionDemo">Correct the match record</h3><p data-i18n="correctionNote">Withdraw the demo goal at 60:30. Recompute facts and remove stories that depend on the old snapshot. Synthetic operator correction, not VAR.</p><button id="correct-goal" class="button button-dark" disabled data-i18n="withdrawGoal">Withdraw demo goal</button><button id="export-correction" class="button button-ghost" disabled data-i18n="exportPatch">Export correction patch ↓</button><div id="correction-result" aria-live="polite"></div></section></div></article>
+  <section id="broadcast-preview" class="broadcast-preview" aria-label="Broadcast preview">
+    <div class="panel-heading"><h2 data-i18n="broadcastPreview">Broadcast preview</h2><span class="tiny-tag" data-i18n="sameOverlay">SAME CONTENT AS JSON EXPORT</span></div>
+    <div class="broadcast-content"><p class="fine-print" data-i18n="broadcastNote">A graphics preview from the current overlay payload. No video or tracking feed.</p><div id="overlay-withdrawal" role="status"></div><div class="broadcast-stage"><div class="broadcast-stage-label" data-i18n="graphicsCanvas">GRAPHICS PREVIEW · SYNTHETIC MATCH</div><div id="overlay-card" class="overlay-card"><p data-i18n="previewEmpty">Generate an insight to preview its broadcast card.</p></div></div><div id="overlay-metadata" class="overlay-metadata"></div></div>
+  </section>
+      <details class="developer-check"><summary><span data-i18n="developerCheck">Developer validation test</span><span class="tiny-tag" data-i18n="simulatedInput">SIMULATED INPUT</span></summary><div class="developer-check-content"><section><h3 data-i18n="claimCheck">Check a bad claim</h3><p data-i18n="claimDemoNote">Inject an incorrect shot count and an unavailable player reference. This is an offline test, not a model response.</p><button id="test-claim" class="button button-dark" data-i18n="testClaim">Run verification test</button><div id="claim-result" aria-live="polite"></div></section></div></details>
+    </div>
+  </details>
+      <div class="about-note"><span class="mini-logo">t↗</span><p data-i18n="about">Built for explainable football storytelling. Fictional teams. Synthetic events. Traceable insights.</p><span id="model-session-note" class="model-session-note" aria-live="polite"></span></div>
+  </div>
+
+
+  <footer><span>TURNING XI / 2026</span><span data-i18n="footer">The game beyond the stats.</span><span data-i18n="demoNotice">DEMO · NOT A REAL MATCH</span></footer>
+</main><div id="toast" role="status" hidden></div>
+</body></html>
