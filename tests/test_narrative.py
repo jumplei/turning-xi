@@ -83,10 +83,15 @@ class NarrativeTests(unittest.TestCase):
     @patch.dict(os.environ, {'AZURE_OPENAI_ENDPOINT':'https://example.openai.azure.com', 'AZURE_OPENAI_API_KEY':'test-key'})
     def test_full_time_insight_includes_goal_evidence(self):
         with patch('backend.narrative.azure_response', side_effect=TimeoutError) as call:
-            narrative.narrate(DURATION, analysis_path='fast')
+            result=narrative.narrate(DURATION, analysis_path='fast')
         ctx=call.call_args.args[0]
         self.assertEqual({e['id'] for e in ctx['evidence'] if e['outcome']=='goal'}, {e['event_id'] for e in ctx['goals']})
         self.assertEqual(ctx['match_status'], 'full_time')
+        self.assertEqual(ctx['kind'], 'full_time')
+        self.assertEqual(ctx['target']['type'], 'full_time')
+        self.assertTrue(any(e['type']=='card' and e.get('card_color')=='red' for e in ctx['evidence']))
+        self.assertLessEqual(len(ctx['evidence']),8)
+        self.assertIn('Full time: 2–1', result['text'])
 
     @patch.dict(os.environ, {'AZURE_OPENAI_ENDPOINT':'https://example.openai.azure.com', 'AZURE_OPENAI_API_KEY':'test-key'})
     def test_duplicate_evidence_ids_are_deduplicated(self):
