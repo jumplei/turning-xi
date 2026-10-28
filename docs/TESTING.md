@@ -1,0 +1,24 @@
+# Validation
+
+## Automated checks
+
+```sh
+.venv/bin/python -m unittest discover -s tests -v
+node tests/navigation.test.js
+node tests/replay-policy.test.js
+node tests/presentation.test.js
+```
+
+The latest local Python run passed 66 tests. Tests use mocked model transports and do not spend Azure credit. They cover chronology, prefix boundaries, rules across seeds, phase selection, fact validation, corrections, caching, concurrent requests and atomic budget reservation. JavaScript checks cover spoiler-free navigation, rewind, freshness, important-moment scheduling and shared broadcast payloads.
+
+## Real-model verification
+
+Development has used real Microsoft Foundry inference for explanations, audience and team preferences, personnel events, selected phases and recaps. These are individual samples, not an error-free benchmark.
+
+A full-time failure was reproduced: goal scorers appeared in the supplied goal history but were missing from the event evidence used by player-name validation. The fix includes goal evidence in full-time explanations. A subsequent real full-time sample passed typed-fact and reference checks with source `foundry`, at approximately 2.2 seconds.
+
+Model failures still produce explicit fallbacks. Request timing varies. Tests do not prove qualitative tactical causality or that every generated sentence is correct.
+
+## Browser review
+
+Browser review covers replay controls, narrow-width layouts, evidence expansion, selected phases, audience preferences, record corrections and consistent broadcast output. Automated tests complement visual and interactive review.
