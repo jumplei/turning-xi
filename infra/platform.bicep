@@ -6,6 +6,7 @@ param modelEndpoint string
 param modelDeployment string
 param persistentLogs bool = false
 param modelCallLimit int = 800
+param modelCallsUsed int = 0
 @secure()
 param modelKey string
 @secure()
@@ -92,6 +93,7 @@ resource app 'Microsoft.App/containerApps@2024-03-01' = if (!registryOnly) {
             { name: 'AZURE_OPENAI_API_KEY', secretRef: 'model-key' }
             { name: 'MATCHMIND_ACCESS_TOKEN', secretRef: 'demo-access-token' }
             { name: 'PHASELENS_SESSION_CALL_LIMIT', value: string(modelCallLimit) }
+            { name: 'PHASELENS_SESSION_CALLS_USED', value: string(modelCallsUsed) }
             { name: 'PHASELENS_SESSION_SECONDS', value: '0' }
           ]
           probes: [

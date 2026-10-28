@@ -10,6 +10,7 @@ param modelDeployment string = 'gpt-6-luna'
 param persistentLogs bool = false
 @minValue(1)
 param modelCallLimit int = 800
+param modelCallsUsed int = 0
 @secure()
 param modelKey string = ''
 @secure()
@@ -47,6 +48,7 @@ module platform './platform.bicep' = if (!registryOnly) {
     modelDeployment: modelDeployment
     persistentLogs: persistentLogs
     modelCallLimit: modelCallLimit
+    modelCallsUsed: modelCallsUsed
     modelKey: modelKey
     demoAccessToken: demoAccessToken
   }
