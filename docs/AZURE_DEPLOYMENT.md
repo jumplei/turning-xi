@@ -14,7 +14,7 @@ flowchart LR
 
 ## Hosted application
 
-[Open Turning XI](https://ca-matchmind.jollystone-6e63690c.eastus2.azurecontainerapps.io). The demo uses HTTPS and a token gate for model-generating requests. Supply the token separately in submission testing instructions; do not commit credentials. The hosted model allowance is 800 request slots. Session counters are operational controls and may require carry-forward across revision changes.
+[Open Turning XI](https://ca-matchmind.jollystone-6e63690c.eastus2.azurecontainerapps.io). The demo uses HTTPS and allows direct access to model-generating requests without a sign-in or demo token. The hosted allowance is 800 request slots per running process. Generation stops at the limit while computed match facts remain available. Counters are not durable across platform restarts or scale-to-zero; manual releases can carry forward the observed count. This is not a cumulative hosting-wide billing hard stop.
 
 ## Service configuration
 
@@ -23,7 +23,7 @@ flowchart LR
 - HTTPS ingress with startup, readiness and liveness probes.
 - A private Basic ACR stores versioned Linux images.
 - ACR Tasks builds and checks images remotely.
-- Container Apps secret references provide the model key, registry credential and model-access token.
+- Container Apps secret references provide the model key and registry credential. An optional `protectModelAccess` parameter can enable a demo-token gate; it is disabled for the public judging demo.
 - A Log Analytics workspace is provisioned for optional operational logging. The cost-minimized demo configuration disables persistent log ingestion; live diagnostics can use Container Apps log streaming.
 - Azure CLI management uses Microsoft Entra ID authentication.
 
@@ -36,7 +36,7 @@ Resource names retain the original MatchMind naming convention. The public produ
 3. Compile and validate Bicep, review ARM what-if output and confirm resource scope and costs.
 4. Build the current image through ACR Tasks and record its tag/digest.
 5. Check container startup, deploy to Container Apps and verify HTTPS/health probes.
-6. Verify the model access gate, real inference within the approved allowance, replay and correction behavior, and logging.
+6. Verify the configured access mode, real inference within the approved allowance, replay and correction behavior, and logging.
 7. Record the endpoint and decide retention/cleanup according to the approved hosting period.
 
 ## Source layout
